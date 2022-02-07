@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SimpleFormService } from './simple-form.service';
 
 @Component({
   selector: 'app-simple-form',
@@ -11,7 +12,10 @@ export class SimpleFormComponent implements OnInit {
   formSubmitted = false;
   title = "Simple form to test";
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private service: SimpleFormService
+  ) {
     this.form = this.buildForm();
   }
 

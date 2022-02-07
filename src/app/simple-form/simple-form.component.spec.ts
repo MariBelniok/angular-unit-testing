@@ -1,11 +1,14 @@
 import { DebugElement } from '@angular/core';
+import { HttpClientTestingModule } from '@angular/common/http/testing'
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule, By } from '@angular/platform-browser';
 
 import { SimpleFormComponent } from './simple-form.component';
+import { SimpleFormService } from './simple-form.service';
+import { SimpleFormServiceMock } from '../mocks/simple-form.service.mock';
 
-describe('SimpleFormComponent', () => {
+fdescribe('SimpleFormComponent', () => {
   let component: SimpleFormComponent;
   let fixture: ComponentFixture<SimpleFormComponent>;
   let de: DebugElement;
@@ -19,7 +22,11 @@ describe('SimpleFormComponent', () => {
       imports: [
         BrowserModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        HttpClientTestingModule
+      ],
+      providers: [
+        { provide: SimpleFormService, useClass: SimpleFormServiceMock }
       ]
     })
     .compileComponents().then(() => {
